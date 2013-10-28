@@ -1,6 +1,13 @@
 # IntelliJ
 *.iml
 
+# Eclipse IDE File
+.classpath
+.project
+.springBeans
+.settings
+target
+
 # OS or Editor folders
 .DS_Store
 Thumbs.db
@@ -28,10 +35,6 @@ cobertura.ser
 _notes
 dwsync.xml
 
-# Komodo
-*.komodoproject
-.komodotools
-
 # Folders to ignore
 .hg
 .svn
@@ -39,3 +42,4 @@ dwsync.xml
 intermediate
 publish
 .idea
+

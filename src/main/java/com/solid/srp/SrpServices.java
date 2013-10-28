@@ -32,6 +32,8 @@ public class SrpServices {
     public void signUp(String userName, String password, String email){
         User user = new User(userName, password, email);
         users.insert(user);
+        // OK: We must send the email from the service and not from the UserDB class
+        Mail.send("admin@solid.com", email, "Solid Registration", "Welcome to Solid Principles!!");
     }
 
     public User readUser(String userName){

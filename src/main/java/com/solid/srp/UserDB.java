@@ -22,9 +22,6 @@ public class UserDB {
             throw new NullPointerException("User can't be null");
         }
         users.insert(user);
-
-        // NO OK: This class must be only intended to access to a data base
-        Mail.send("admin@solid.com", user.getEmail(), "Solid Registration", "Welcome to Solid Principles!!");
     }
 
     public void drop () throws NullPointerException{
