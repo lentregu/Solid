@@ -1,4 +1,4 @@
-package com.solid.openclosed.okStrategy;
+package com.solid.openclosed.okstrategy;
 
 public class ArrayProperty implements IOpenClosedProperty {
 
@@ -25,7 +25,7 @@ public class ArrayProperty implements IOpenClosedProperty {
 			stringProperties.append(stringProperties.length() == 0 ? prop: " "+prop);
 		}
 		
-		return stringProperties.toString();
+		return stringProperties.toString().trim();
 	}
 
 

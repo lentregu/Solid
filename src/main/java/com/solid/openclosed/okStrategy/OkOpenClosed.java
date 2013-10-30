@@ -1,10 +1,10 @@
-package com.solid.openclosed.okStrategy;
+package com.solid.openclosed.okstrategy;
 
 
 public class OkOpenClosed
 {
 	public static final String property2String(IOpenClosedProperty property)
 	{
-		return property.toString();
+		return property == null ? "" : property.toString();
 	}
 }

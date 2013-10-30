@@ -1,4 +1,4 @@
-package com.solid.openclosed.okStrategy;
+package com.solid.openclosed.okstrategy;
 
 public interface IOpenClosedProperty {
 

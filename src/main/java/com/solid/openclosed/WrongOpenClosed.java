@@ -18,7 +18,7 @@ public class WrongOpenClosed
 					result.append(array[i]);
 					result.append(' ');
 				}
-				return result.toString();
+				return result.toString().trim();
 			}
 		} else {
 			return property.toString();
