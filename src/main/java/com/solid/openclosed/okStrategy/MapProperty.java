@@ -1,10 +1,11 @@
 package com.solid.openclosed.okstrategy;
 
 import java.util.Map;
+import java.util.TreeMap;
 
 public class MapProperty implements IOpenClosedProperty {
 
-	private Map<String, String> properties;
+	private TreeMap<String, String> properties;
 
     public Map getProperties() {
         return properties;
@@ -12,13 +13,9 @@ public class MapProperty implements IOpenClosedProperty {
 
     public MapProperty(Map<String, String> properties) {
         super();
-        this.properties = properties;
+        this.properties = new TreeMap(properties);
     }
 
-	public void setProperties(Map properties) {
-		this.properties = properties;
-	}
-	
 	@Override
 	public String toString() {
 		StringBuilder stringProperties = new StringBuilder();
