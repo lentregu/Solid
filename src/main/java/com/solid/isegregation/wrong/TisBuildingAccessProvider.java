@@ -62,4 +62,11 @@ public class TisBuildingAccessProvider implements ISupplierProvider
 		throw new NotImplementedException();
 	}
 
+    @Override
+    public List<String> getTransactions(Map<String, Object> params)
+    {
+        throw new NotImplementedException();
+    }
+
+
 }

@@ -20,4 +20,8 @@ public interface ISupplierProvider {
 
     // Only for SVA
 	String transfer(Map<String, Object> params);
+
+    // Only for cards which can have a balance: e-money, transport, SVA, etc.
+    List<String> getTransactions(Map<String, Object> params);
+
 }

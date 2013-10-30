@@ -44,4 +44,10 @@ public class ThreeVCreditCardProvider implements ISupplierProvider {
 		return null;
 	}
 
+    @Override
+    public List<String> getTransactions(Map<String, Object> params) {
+        System.out.println("ThreeV Getting Transactions....");
+        return null;
+    }
+
 }
