@@ -12,38 +12,41 @@ import java.util.List;
 public class Salary {
 
     private static final int AMOUNT_PER_YEAR = 40;
-    private static final String ROOT_PATH = "/tmp/";
 
     private final static int EMPLOYEE_ID_LENGTH = 8;
     private final static int NAME_LENGTH = 40;
-    private final static int GROSS_SALARY_LENGTH = 6;
-    private final static int SENIORITY_LENGTH = 2;
-    private final static int IRPF_LENGTH = 2;
-    private final static int SALARY_LENGTH = 12;
 
-    FileManager salariesFile;
+    private FileManager salariesFile;
+
+    private String rootPath=null;
 
 
     public void generateSalaries(List<Employee> employees) throws IOException {
 
-        String timeLog = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-        String rootPath = "Salary"+ File.separator+timeLog+File.separator;
-        if (createFolder(rootPath)) {
-            try {
-                salariesFile = new FileManager(rootPath, "salaries-"+timeLog + ".txt");
-                for (Employee employee: employees) {
-                    genEmployeeSalary(rootPath, employee);
-                    addRegister(employee);
+        if (employees != null) {
+            String timeLog = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+            rootPath = "Salary"+ File.separator+timeLog+File.separator;
+            if (createFolder(rootPath)) {
+                try {
+                    salariesFile = new FileManager(rootPath, "salaries-"+timeLog + ".txt");
+                    for (Employee employee: employees) {
+                        genEmployeeSalary(rootPath, employee);
+                        addRegister(employee);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            finally {
+                finally {
 
-                salariesFile.close();
+                    salariesFile.close();
+                }
             }
         }
 
+    }
+
+    public String getRootPath() {
+        return rootPath;
     }
 
     private void addRegister(Employee employee) throws IOException {
@@ -73,4 +76,5 @@ public class Salary {
     private boolean createFolder(String rootPath) {
         return new File(rootPath).mkdirs();
     }
+
 }
