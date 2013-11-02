@@ -30,8 +30,15 @@ public class Salary {
                 try {
                     salariesFile = new FileManager(rootPath, "salaries-"+timeLog + ".txt");
                     for (Employee employee: employees) {
-                        genEmployeeSalary(rootPath, employee);
-                        addRegister(employee);
+                        // Liskov violation: I would have to be able to substitute Employee with any subclass
+                        // without changing behaviour. The Method might be able to use objects of every subclass
+                        // without knowing it. But this is not possible because if the method doesn't ask if the
+                        // instance is an Intern it will generate a salary file what is not correct.
+
+                        if (! (employee instanceof Intern)) {
+                            genEmployeeSalary(rootPath, employee);
+                            addRegister(employee);
+                        }
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

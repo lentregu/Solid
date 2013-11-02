@@ -63,6 +63,11 @@ public class SalaryTest {
         when(mockIntern.getGrossSalary()).thenReturn(0);
         when(mockIntern.getSeniority()).thenReturn(0);
         when(mockIntern.getName()).thenReturn("Intern");
+        setIterator();
+
+    }
+
+    private void setIterator() {
 
         Iterator employeesIterator = mock(Iterator.class);
         when(employeesIterator.hasNext()).thenReturn(true, true, true, false);
@@ -84,9 +89,14 @@ public class SalaryTest {
         Salary salary = new Salary();
         salary.generateSalaries(mockEmployees);
         assertTrue(new File(salary.getRootPath()).exists());
+        setIterator();
         for (Employee employee: mockEmployees)     {
-            assertTrue(new File(salary.getRootPath() + employee.getName()).exists());
+            if (employee instanceof Intern) {
+                assertFalse(new File(salary.getRootPath() + employee.getName()).exists());
+            }
+            else {
+                assertTrue(new File(salary.getRootPath() + employee.getName()).exists());
+            }
         }
     }
-
 }
