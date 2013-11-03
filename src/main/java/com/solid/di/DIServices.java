@@ -16,6 +16,8 @@ public class DIServices {
 
     private static SrpProperties srpProperties = SrpProperties.INSTANCE;
 
+    private INotificationService notificationService;
+
     static {
 
         try {
@@ -28,16 +30,15 @@ public class DIServices {
     }
 
 
-    public DIServices() {
-         users = new UserDB(db);
+    public DIServices(INotificationService notificationService) {
+        this.notificationService = notificationService;
+        users = new UserDB(db);
     }
 
     public void signUp(String userName, String password, String email, String phone){
         User user = new User(userName, password, email, phone);
         users.insert(user);
-        //This design violates the dependency inversion principle.
-        //The high level module DIServices depends on MailService which is a concrete class and not an abstraction.
-        MailService.send("admin@solid.com", email, "Solid Registration", "Welcome to Solid Principles!!");
+        notificationService.notify(user, "Solid Registration", "Welcome to Solid Principles!!");
     }
 
     public User readUser(String userName){
