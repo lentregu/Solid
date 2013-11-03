@@ -1,11 +1,14 @@
-package com.solid.srp;
+package com.solid.di;
 
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
+import com.solid.srp.SrpProperties;
+import com.solid.srp.User;
+import com.solid.srp.UserDB;
 
 import java.net.UnknownHostException;
 
-public class SrpServices {
+public class DIServices {
 
     private static UserDB users;
 
@@ -25,15 +28,16 @@ public class SrpServices {
     }
 
 
-    public SrpServices() {
+    public DIServices() {
          users = new UserDB(db);
     }
 
     public void signUp(String userName, String password, String email, String phone){
         User user = new User(userName, password, email, phone);
         users.insert(user);
-        // OK: We must send the email from the service and not from the UserDB class
-        Mail.send("admin@solid.com", email, "Solid Registration", "Welcome to Solid Principles!!");
+        //This design violates the dependency inversion principle.
+        //The high level module DIServices depends on MailService which is a concrete class and not an abstraction.
+        MailService.send("admin@solid.com", email, "Solid Registration", "Welcome to Solid Principles!!");
     }
 
     public User readUser(String userName){

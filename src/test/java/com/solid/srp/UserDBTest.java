@@ -30,7 +30,7 @@ public class UserDBTest {
 
     @Test
     public void insertUserIntoDBCreateADocWithANewId() {
-        User user = new User("Pepe", "pepe_password","pepe_mail@pepe.com");
+        User user = new User("Pepe", "pepe_password","pepe_mail@pepe.com","+34652587893");
         usersTest.insert(user);
         assertNotNull(user.get("_id"));
     }
@@ -42,12 +42,13 @@ public class UserDBTest {
 
     @Test
     public void retrieveUserFromDB(){
-        User user = new User("Pepe", "pepe_password","pepe_mail@pepe.com");
+        User user = new User("Pepe", "pepe_password","pepe_mail@pepe.com", "+34652587893");
         usersTest.insert(user);
         User user2 = usersTest.findByUserName(user.getUserName());
         assertEquals(user.getUserName(), user2.getUserName());
         assertEquals(user.getPassword(), user2.getPassword());
         assertEquals(user.getEmail(), user2.getEmail());
+        assertEquals(user.getPhone(), user2.getPhone());
     }
 
     @After

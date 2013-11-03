@@ -44,7 +44,8 @@ public class Main
         String userName = readKeypad("User Name: ");
         String password = readKeypad("Password: ");
         String email = readKeypad("Email: ");
-        srpServices.signUp(userName, password, email);
+        String phone = readKeypad("Phone: ");
+        srpServices.signUp(userName, password, email, phone);
     }
 
     private void readUser(){
@@ -53,6 +54,7 @@ public class Main
         System.out.println("User Name: " + user.get("userName"));
         System.out.println("Password: " + user.get("password"));
         System.out.println("Email: " + user.get("email"));
+        System.out.println("Phone: " + user.get("phone"));
     }
 
 
